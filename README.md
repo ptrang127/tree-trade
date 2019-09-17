@@ -45,6 +45,13 @@ Navigate to the `tree-trade` folder like this:
 ```
 your/path/to/tree-trade/tree-trade
 ```
+
+Install all of the project dependencies:
+
+```
+npm install
+```
+
 To start the server, run:
 
 ```
