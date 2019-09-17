@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../assets/images/logo.svg';
+import {Button} from 'react-bootstrap';
 import './App.css';
 
 const App: React.FC = () => {
@@ -18,6 +19,8 @@ const App: React.FC = () => {
         >
           Learn React
         </a>
+        <Button variant="primary">Click me I do nothing</Button>
+
       </header>
     </div>
   );
