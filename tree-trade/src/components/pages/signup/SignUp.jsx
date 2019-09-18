@@ -1,9 +1,9 @@
 /**import React from 'react';
-import './LoginForm.css';
+import './SignUp.css';
 
 import {Form, Button } from 'react-bootstrap';
 
-const LoginForm: React.FC = () => {
+const SignUp: React.FC = () => {
     return (
         <Form>
   <Form.Group controlId="formBasicEmail">
@@ -28,12 +28,12 @@ const LoginForm: React.FC = () => {
     );
 }
 
-export default LoginForm; **/ 
+export default SignUp; **/ 
 
 import React from 'react';
 import { validateAll } from 'indicative';
 
-class LoginForm extends React.Component {
+class SignUp extends React.Component {
   state = {
     name:'',
     email:'',
@@ -95,4 +95,4 @@ class LoginForm extends React.Component {
   }
 };
 
-export default LoginForm;
+export default SignUp;
