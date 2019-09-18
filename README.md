@@ -43,7 +43,7 @@ git clone https://github.com/ptrang127/tree-trade.git
 Navigate to the `tree-trade` folder like this:
 
 ```
-your/path/to/tree-trade/tree-trade
+cd your/path/to/tree-trade/tree-trade
 ```
 
 Install all of the project dependencies:
