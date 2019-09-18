@@ -1,98 +1,90 @@
-/**import React from 'react';
-import './SignUp.css';
+import React, { Component } from 'react';
+import { withFirebase } from '../../firebase';
 
-import {Form, Button } from 'react-bootstrap';
+const SignUpPage = () => (
+  <div>
+    <SignUpForm />
+  </div>
+);
 
-const SignUp: React.FC = () => {
+class SignUpFormBase extends Component {
+  constructor(props){
+    super(props);
+
+    const INITIAL_STATE = {
+      username: '',
+      email: '',
+      passwordOne: '',
+      passwordTwo: '',
+      error: null,
+    };
+
+    this.state = { ...INITIAL_STATE };
+  }
+
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
+  onSubmit = event => {
+    const { username, email, passwordOne } = this.state;
+
+    this.props.firebase
+      .doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then(authUser => {
+        this.setState({ ...this.INITIAL_STATE });
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
+    event.preventDefault();
+  }
+
+  render() {
+    const {
+      username,
+      email,
+      passwordOne,
+      passwordTwo,
+      error,
+    } = this.state;
     return (
-        <Form>
-  <Form.Group controlId="formBasicEmail">
-    <Form.Label>Email address</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
-    <Form.Text className="text-muted">
-      We'll never share your email with anyone else.
-    </Form.Text>
-  </Form.Group>
-
-  <Form.Group controlId="formBasicPassword">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
-  </Form.Group>
-  <Form.Group controlId="formBasicCheckbox">
-    <Form.Check type="checkbox" label="I agree to the Terms & Conditions" />
-  </Form.Group>
-  <Button variant="primary" type="submit">
-    Submit
-  </Button>
-</Form>
+      <form onSubmit={this.onSubmit}>
+        <input
+          name="username"
+          value={username}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Full Name"
+        />
+        <input
+          name="email"
+          value={email}
+          onChange={this.onChange}
+          type="text"
+          placeholder="Email Address"
+        />
+        <input
+          name="passwordOne"
+          value={passwordOne}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Password"
+        />
+        <input
+          name="passwordTwo"
+          value={passwordTwo}
+          onChange={this.onChange}
+          type="password"
+          placeholder="Confirm Password"
+        />
+        <button type="submit">Sign Up</button>
+        {error && <p>{error.message}</p>}
+      </form>
     );
+  }
 }
 
-export default SignUp; **/ 
+const SignUpForm = withFirebase(SignUpFormBase);
 
-import React from 'react';
-import { validateAll } from 'indicative';
-
-class SignUp extends React.Component {
-  state = {
-    name:'',
-    email:'',
-    password:'',
-    password_confirm:'',
-  }
-  handleInputChange=(event)=>{
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  };
-  handleSubmit=(event)=> {
-    event.preventDefault();
-    console.log(this.state);
-
-    const data = this.state;
-    const rules = {
-      name: 'require|string', // indicated that name field is required with string values and same with email as well
-      email: 'required|email',
-      password:'required|string|min:4|confirmed' // min:6 here indicates a minimum of 4 characters and confirmed checks for password confirmation.
-    }
-    validateAll(data, rules)
-      .then(() => {
-        console.log('success')
-      })
-      .catch(errors => {
-        console.log(errors); //show errors 
-      })
-  };
-  render () {
-    return (
-        <div className="mh-fullscreen bg-img center-vh p-20" style ={{backgroundImage:
-          'url(assets/images/trees-background.jpg)'}}>
-      <div className="card card-shadowed p-50 w-500 mb-0" style={{maxWidth: '100%'}}>
-        <h5 className="text-uppercase text-center">Register</h5>
-        <br />
-        <br />
-        <form className="form-type-material" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <input type="text" className="form-control" placeholder="Username" name="name" onChange={this.handleInputChange}/>
-          </div>
-          <div className="form-group">
-            <input type="text" className="form-control" placeholder="Email Address" name="email" onChange={this.handleInputChange}/>
-          </div>
-          <div className="form-group">
-          <input type="password" className="form-control" placeholder="Password" name="password" onChange={this.handleInputChange}/>            
-          </div>
-          <div className="form-group">
-          <input type="password" className="form-control" placeholder="Password (confirm)" name="password_confirm" onChange={this.handleInputChange}/>            
-          </div>
-          <br />
-          <button className="btn btn-bold btn-block btn-primary" type="submit">Register</button>
-        </form>
-        <hr className="w-30" />
-      </div> 
-    </div>
-
-    );
-  }
-};
-
-export default SignUp;
+export default SignUpPage;
