@@ -1,11 +1,9 @@
 import app from "firebase/app";
 import "firebase/auth";
 import "firebase/database";
-   
+
 // Your web app's Firebase configuration
-const firebaseConfig = {
-//enter keys here
-};
+const firebaseConfig = {};
 
 class Firebase {
     constructor() {
@@ -22,7 +20,7 @@ class Firebase {
     doSignOut = () => this.auth.signOut();
     doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
     doPasswordUpdate = password =>
-      this.auth.currentUser.updatePassword(password);
+        this.auth.currentUser.updatePassword(password);
 }
 
 export default Firebase;
