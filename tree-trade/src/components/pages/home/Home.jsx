@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import { Button, Jumbotron, Container, Row, Col } from 'react-bootstrap';
-import './Home.css';
-import NavBar from '../../widgets/navbar/NavBar';
+import { Button, Col, Container, Jumbotron, Row } from 'react-bootstrap';
 import tree from '../../../assets/images/tree.png';
-
+import './Home.css';
 
 class Home extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <div className="Home">
-          <NavBar />
           <Jumbotron>
             <img src={tree}></img>
             <br />
@@ -49,7 +46,7 @@ class Home extends Component {
             </Col>
           </Row>
         </Container>
-      </div>
+      </React.Fragment>
     );
   }
 
