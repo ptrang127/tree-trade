@@ -4,6 +4,7 @@ import './App.css';
 import Home from './components/pages/home/Home';
 import SignUp from './components/pages/signup/SignUp';
 import NavBar from './components/widgets/navbar/NavBar';
+import Login from './components/pages/login/Login';
 
 class App extends Component {
   render() {
@@ -13,7 +14,7 @@ class App extends Component {
           <Router>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/login" component={Home} />
+              <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
             </Switch>
           </Router>
