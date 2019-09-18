@@ -1,15 +1,14 @@
 import React from 'react';
-import tree from '../../assets/images/tree.jpg';
+import tree from '../../../assets/images/tree.jpg';
 import { Button } from 'react-bootstrap';
 import './Home.css';
-import NavBar from '../navbar/NavBar';
+import NavBar from '../../widgets/navbar/NavBar';
 
 const Home: React.FC = () => {
   return (
     <div className="Home">
       <NavBar/>
       <header className="Home-header">
-        <img src={tree} className="Home-logo" alt="logo" />
         <p>
           Edit <code>src/Home.tsx</code> and save to reload.
         </p>
