@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { withFirebase } from '../../firebase';
+import { Form, Button, Grid, Row, Col, Jumbotron } from 'react-bootstrap';
+import Tree from '../../../assets/images/tree.png';
+import './SignUp.css';
 
 const SignUpPage = () => (
   <div>
@@ -8,7 +11,7 @@ const SignUpPage = () => (
 );
 
 class SignUpFormBase extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     const INITIAL_STATE = {
@@ -49,38 +52,67 @@ class SignUpFormBase extends Component {
       error,
     } = this.state;
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button type="submit">Sign Up</button>
-        {error && <p>{error.message}</p>}
-      </form>
+      <React.Fragment>
+        <Jumbotron>
+          <h1>Welcome to Tree Trade!</h1>
+          <p>
+            We're glad to have you :)
+          </p>
+          <p>
+            <Button variant="success">Learn more</Button>
+          </p>
+        </Jumbotron>
+        <Row noGutters={true}>
+          <Col md={5}>
+            <div class="about">
+              <h1>Sign up with <br />Tree Trade</h1>
+              <img src={Tree}></img>
+              <br />
+              <br />
+              <p>Join millions of others on your journey to paper trading!</p>
+            </div>
+          </Col>
+
+          <Col md={6}>
+            <h2>Register</h2>
+            <h3>It's quick and easy.</h3>
+            <hr />
+            <Form>
+              <Form.Row>
+                <Form.Group as={Col} controlId="firstName">
+                  <Form.Label>First Name</Form.Label>
+                  <Form.Control placeholder="John" />
+                </Form.Group>
+
+                <Form.Group as={Col} controlId="lastName">
+                  <Form.Label>Last Name</Form.Label>
+                  <Form.Control placeholder="Doe" />
+                </Form.Group>
+              </Form.Row>
+
+              <Form.Group controlId="emailAddress">
+                <Form.Label>Email Address</Form.Label>
+                <Form.Control placeholder="john.doe@example.com" />
+              </Form.Group>
+
+              <Form.Group controlId="formGridAddress2">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+              </Form.Group>
+
+              <Form.Group controlId="formGridAddress2">
+                <Form.Label>Confirm Password</Form.Label>
+                <Form.Control type="password" placeholder="Password again" />
+              </Form.Group>
+              <hr />
+              <Button variant="success" type="submit">
+                Sign Up
+                </Button>
+            </Form>
+          </Col>
+        </Row>
+      </React.Fragment >
+
     );
   }
 }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from '../pages/home/Home';
 import './App.css';
-import Home from './components/pages/home/Home';
-import SignUp from './components/pages/signup/SignUp';
-import NavBar from './components/widgets/navbar/NavBar';
-import Login from './components/pages/login/Login';
+import NavBar from '../widgets/navbar/NavBar';
+import Login from '../pages/login/Login';
+import SignUp from '../pages/signup/SignUp';
 
 class App extends Component {
   render() {

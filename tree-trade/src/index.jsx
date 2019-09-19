@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from './components/app/App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,7 +10,7 @@ import Firebase, { FirebaseContext } from './components/firebase';
 ReactDOM.render(
     <FirebaseContext.Provider value={new Firebase()}>
         <App />
-    </FirebaseContext.Provider>, 
+    </FirebaseContext.Provider>,
     document.getElementById('root')
 );
 
